@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Girls Out Gold — You Are Not Alone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --gold: #C9922A;
+  --gold-light: #F0C96B;
+  --gold-pale: #FFF8EC;
+  --rose: #D4607A;
+  --rose-light: #F9E4EA;
+  --deep: #1A1320;
+  --warm-dark: #2D1F2E;
+  --cream: #FDF6EE;
+  --text: #3A2A3B;
+  --muted: #7A6880;
+  --white: #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(253,246,238,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201,146,42,0.15);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--rose); }
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav a {
+  text-decoration: none; font-size: 0.88rem; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--rose) !important;
+  color: var(--white) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: #b84d66 !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 7rem 2.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--warm-dark) 0%, #3D1F3E 50%, #2A1A2B 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 40%, rgba(201,146,42,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 20% 70%, rgba(212,96,122,0.15) 0%, transparent 65%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 700px;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(201,146,42,0.2);
+  border: 1px solid rgba(201,146,42,0.4);
+  color: var(--gold-light);
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.4rem 1rem; border-radius: 50px;
+  margin-bottom: 1.75rem;
+  animation: fadeUp 0.8s ease both;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero p {
+  font-size: 1.1rem; line-height: 1.75;
+  color: rgba(255,255,255,0.75);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 1s 0.2s ease both;
+}
+.hero-buttons {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp 1s 0.3s ease both;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--deep); font-weight: 600;
+  padding: 0.85rem 2rem; border-radius: 50px;
+  text-decoration: none; font-size: 0.95rem;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 20px rgba(201,146,42,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); background: var(--gold-light); }
+.btn-outline {
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: var(--white); font-weight: 500;
+  padding: 0.85rem 2rem; border-radius: 50px;
+  text-decoration: none; font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color: var(--gold-light); background: rgba(201,146,42,0.1); }
+
+.hero-orbs {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 50%; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeUp 1.2s 0.4s ease both;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+.orb-1 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(201,146,42,0.25) 0%, transparent 70%);
+  top: 20%; right: 10%;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(212,96,122,0.2) 0%, transparent 70%);
+  bottom: 25%; right: 25%;
+  animation-delay: -2s;
+}
+.orb-3 {
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(240,201,107,0.3) 0%, transparent 70%);
+  top: 15%; right: 35%;
+  animation-delay: -4s;
+}
+
+/* ── STATS ── */
+.stats {
+  background: var(--white);
+  padding: 3.5rem 2.5rem;
+  display: flex; justify-content: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.stat-item {
+  text-align: center; padding: 0 3.5rem;
+  border-right: 1px solid rgba(0,0,0,0.08);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--gold);
+  display: block; margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-size: 0.82rem; color: var(--muted);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── SECTION BASE ── */
+section { padding: 5rem 2.5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  display: inline-block;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 0.75rem;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.2; margin-bottom: 1rem;
+  color: var(--deep);
+}
+.section-lead {
+  font-size: 1.05rem; line-height: 1.75;
+  color: var(--muted); max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+/* ── AWARENESS ── */
+#awareness { background: var(--cream); }
+.awareness-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.awareness-card {
+  background: var(--white);
+  border-radius: 16px; padding: 2rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.awareness-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+.card-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.25rem;
+}
+.icon-gold { background: #FFF3D9; }
+.icon-rose { background: var(--rose-light); }
+.icon-purple { background: #EEE8F8; }
+.awareness-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; margin-bottom: 0.6rem;
+  color: var(--deep);
+}
+.awareness-card p { font-size: 0.9rem; line-height: 1.7; color: var(--muted); }
+
+/* ── SIGNS ── */
+#signs { background: var(--rose-light); }
+.signs-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.signs-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+.signs-list li {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--white); padding: 1rem 1.25rem;
+  border-radius: 12px; border-left: 3px solid var(--rose);
+  font-size: 0.93rem; line-height: 1.6; color: var(--text);
+  box-shadow: 0 2px 8px rgba(212,96,122,0.08);
+}
+.sign-bullet {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--rose); margin-top: 6px; flex-shrink: 0;
+}
+.signs-image-block {
+  position: relative; border-radius: 24px; overflow: hidden;
+  background: linear-gradient(145deg, var(--warm-dark), #4A2040);
+  padding: 3rem 2.5rem;
+  color: var(--white); text-align: center;
+}
+.signs-image-block h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; margin-bottom: 1rem;
+  color: var(--gold-light);
+}
+.signs-image-block p { font-size: 0.92rem; line-height: 1.7; opacity: 0.85; margin-bottom: 1.5rem; }
+.hotline-box {
+  background: rgba(201,146,42,0.15);
+  border: 1px solid rgba(201,146,42,0.3);
+  border-radius: 12px; padding: 1.25rem;
+}
+.hotline-box .hotline-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--gold-light);
+  display: block; margin-bottom: 0.25rem;
+}
+.hotline-box small { font-size: 0.8rem; opacity: 0.7; }
+
+/* ── RESOURCES ── */
+#resources { background: var(--cream); }
+.resource-tabs {
+  display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 0.55rem 1.25rem; border-radius: 50px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  background: var(--white); color: var(--muted);
+  font-size: 0.85rem; font-weight: 500; cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: var(--deep); color: var(--white); border-color: var(--deep);
+}
+.resource-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.resource-card {
+  background: var(--white); border-radius: 16px;
+  padding: 1.75rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+.resource-type {
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 50px;
+  margin-bottom: 1rem; display: inline-block;
+}
+.type-hotline { background: #FFE8ED; color: var(--rose); }
+.type-online { background: #E8F4FF; color: #2A7AD4; }
+.type-local { background: #E8F8EE; color: #27834A; }
+.type-legal { background: #FFF3D9; color: #9A6A00; }
+.resource-card h3 {
+  font-size: 1rem; font-weight: 600;
+  color: var(--deep); margin-bottom: 0.5rem;
+}
+.resource-card p { font-size: 0.87rem; line-height: 1.65; color: var(--muted); margin-bottom: 1rem; }
+.resource-card a {
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--rose); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+}
+.resource-card a:hover { text-decoration: underline; }
+
+/* ── TAKE ACTION ── */
+#act {
+  background: linear-gradient(135deg, var(--warm-dark), #3A1540);
+  color: var(--white);
+}
+#act h2 { color: var(--white); }
+#act .section-lead { color: rgba(255,255,255,0.65); }
+.act-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.act-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px; padding: 1.75rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.act-card:hover {
+  background: rgba(255,255,255,0.11);
+  transform: translateY(-3px);
+}
+.act-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.act-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--gold-light); }
+.act-card p { font-size: 0.87rem; line-height: 1.65; color: rgba(255,255,255,0.65); }
+
+/* ── BELIEVE YOU ── */
+.believe {
+  background: var(--gold-pale);
+  padding: 4rem 2.5rem; text-align: center;
+  border-top: 3px solid var(--gold-light);
+  border-bottom: 3px solid var(--gold-light);
+}
+.believe blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-style: italic; line-height: 1.4;
+  color: var(--deep); max-width: 750px;
+  margin: 0 auto 1rem;
+}
+.believe cite {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: normal; font-weight: 500;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep); color: rgba(255,255,255,0.6);
+  padding: 3rem 2.5rem; text-align: center;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; color: var(--gold-light);
+  margin-bottom: 0.75rem;
+}
+footer p { font-size: 0.85rem; line-height: 1.7; max-width: 500px; margin: 0 auto 1.5rem; }
+.footer-crisis {
+  display: inline-block;
+  background: var(--rose);
+  color: var(--white); font-weight: 600;
+  padding: 0.7rem 2rem; border-radius: 50px;
+  text-decoration: none; font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: background 0.2s;
+}
+.footer-crisis:hover { background: #b84d66; }
+.footer-bottom {
+  font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem; margin-top: 1rem; opacity: 0.5;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav ul { display: none; }
+  .stats { flex-direction: column; gap: 2rem; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 1.5rem 0; }
+  .stat-item:last-child { border-bottom: none; }
+  .signs-layout { grid-template-columns: 1fr; }
+  .hero-orbs { display: none; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">Girls Out <span>Gold</span></div>
+  <ul>
+    <li><a href="#awareness">Awareness</a></li>
+    <li><a href="#signs">Warning Signs</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#act">Take Action</a></li>
+    <li><a href="tel:18006564673" class="nav-cta">Crisis Line</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="hero-badge">Girls Out Gold Initiative</span>
+    <h1>You Are <em>Seen.</em><br/>You Are <em>Believed.</em><br/>You Are <em>Not Alone.</em></h1>
+    <p>Every girl deserves safety, dignity, and support. This space is dedicated to raising awareness about sexual abuse, breaking silence, and connecting survivors with the help they deserve.</p>
+    <div class="hero-buttons">
+      <a href="#resources" class="btn-primary">Find Help Now</a>
+      <a href="#awareness" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+
+<div class="stats">
+  <div class="stat-item">
+    <span class="stat-num">1 in 4</span>
+    <span class="stat-label">Girls Affected Before Age 18</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">82%</span>
+    <span class="stat-label">Of Victims are Under 18</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">93%</span>
+    <span class="stat-label">Know Their Abuser</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">Millions</span>
+    <span class="stat-label">Who Survived — & Thrived</span>
+  </div>
+</div>
+
+<!-- AWARENESS -->
+
+<section id="awareness">
+  <div class="section-inner">
+    <span class="section-tag">Understanding the Issue</span>
+    <h2>Breaking the Silence</h2>
+    <p class="section-lead">Sexual abuse of children is one of the most underreported crimes. Understanding it is the first step to stopping it and supporting survivors.</p>
+    <div class="awareness-grid">
+      <div class="awareness-card">
+        <div class="card-icon icon-gold">💛</div>
+        <h3>What Is Sexual Abuse?</h3>
+        <p>Sexual abuse includes any sexual activity with a child — touching, exposure, exploitation, or grooming. It is never the child's fault, regardless of circumstances.</p>
+      </div>
+      <div class="awareness-card">
+        <div class="card-icon icon-rose">🌸</div>
+        <h3>Why Children Don't Tell</h3>
+        <p>Fear, shame, not having the words, threats from the abuser, or worry about not being believed all prevent children from speaking up. Creating safe spaces to share is vital.</p>
+      </div>
+      <div class="awareness-card">
+        <div class="card-icon icon-purple">💜</div>
+        <h3>The Long-Term Impact</h3>
+        <p>Survivors may experience trauma, anxiety, depression, and difficulties in relationships. With the right support, healing and full, joyful lives are absolutely possible.</p>
+      </div>
+      <div class="awareness-card">
+        <div class="card-icon icon-gold">🌟</div>
+        <h3>Who Commits Abuse?</h3>
+        <p>Most abusers are known to the child — a family member, trusted adult, or community figure. Abuse can happen in any family, community, or background.</p>
+      </div>
+      <div class="awareness-card">
+        <div class="card-icon icon-rose">🛡️</div>
+        <h3>Prevention Starts With Us</h3>
+        <p>Education, open conversations with children, and creating environments where they feel safe to speak up are the most powerful tools we have to prevent abuse.</p>
+      </div>
+      <div class="awareness-card">
+        <div class="card-icon icon-purple">🤝</div>
+        <h3>How to Support a Survivor</h3>
+        <p>Believe them. Listen without judgment. Remind them it's not their fault. Help connect them with professional support. Your response matters more than you know.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEVE QUOTE -->
+
+<div class="believe">
+  <blockquote>"What happened to you was not your fault. Your story matters. Your healing matters. And you deserve every good thing that life has to offer."</blockquote>
+  <cite>— Girls Out Gold</cite>
+</div>
+
+<!-- WARNING SIGNS -->
+
+<section id="signs">
+  <div class="section-inner">
+    <div class="signs-layout">
+      <div>
+        <span class="section-tag">Warning Signs</span>
+        <h2>When to Be Concerned</h2>
+        <p class="section-lead">Children often can't tell us directly what's happening. Watch for these signs that a child may need help.</p>
+        <ul class="signs-list">
+          <li><div class="sign-bullet"></div>Sudden changes in behavior or personality</li>
+          <li><div class="sign-bullet"></div>Nightmares, bedwetting, or sleep problems in older children</li>
+          <li><div class="sign-bullet"></div>Age-inappropriate sexual knowledge or behavior</li>
+          <li><div class="sign-bullet"></div>Withdrawal from friends, family, or activities they used to enjoy</li>
+          <li><div class="sign-bullet"></div>Unexplained physical symptoms or pain</li>
+          <li><div class="sign-bullet"></div>Fear of certain people, places, or being alone</li>
+          <li><div class="sign-bullet"></div>Regression to younger behaviors (thumb-sucking, clinginess)</li>
+          <li><div class="sign-bullet"></div>Secrecy with a specific adult, or receiving unexplained gifts</li>
+          <li><div class="sign-bullet"></div>Running away or expressing desire not to go home</li>
+          <li><div class="sign-bullet"></div>Depression, self-harm, or talk of suicide</li>
+        </ul>
+      </div>
+      <div class="signs-image-block">
+        <h3>If a Child Tells You</h3>
+        <p>Stay calm. Thank them for trusting you. Listen without interrupting. Do not promise secrecy — tell them you will help keep them safe. Do not confront the abuser yourself.</p>
+        <div class="hotline-box">
+          <span class="hotline-num">1-800-422-4453</span>
+          <div>Childhelp National Child Abuse Hotline</div>
+          <small>Available 24/7 — Call or text for professional crisis support</small>
+        </div>
+        <br/>
+        <p style="font-size:0.82rem; opacity:0.7;">You can also report concerns to your local child protective services or law enforcement. You do not need proof — reporting is the right thing to do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+
+<section id="resources">
+  <div class="section-inner">
+    <span class="section-tag">Get Help</span>
+    <h2>Resources & Support</h2>
+    <p class="section-lead">You are not alone. These organizations offer confidential, compassionate help for survivors, families, and those who care for them.</p>
+    <div class="resource-tabs">
+      <button class="tab-btn active">All Resources</button>
+      <button class="tab-btn">Crisis Lines</button>
+      <button class="tab-btn">Online Support</button>
+      <button class="tab-btn">For Parents</button>
+    </div>
+    <div class="resource-grid">
+
+```
+  <div class="resource-card">
+    <span class="resource-type type-hotline">📞 Hotline</span>
+    <h3>RAINN National Sexual Assault Hotline</h3>
+    <p>Confidential support from trained staff, 24/7. Connect with a local sexual assault service provider.</p>
+    <a href="tel:18006564673">1-800-656-4673 →</a><br/><br/>
+    <a href="https://www.rainn.org" target="_blank">rainn.org →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-hotline">📞 Hotline</span>
+    <h3>Childhelp National Child Abuse Hotline</h3>
+    <p>24/7 crisis intervention, information, and referrals. Professional crisis counselors available by call or text.</p>
+    <a href="tel:18004224453">1-800-422-4453 →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-online">💻 Online</span>
+    <h3>RAINN Online Chat</h3>
+    <p>Prefer to type rather than talk? Access free, confidential support 24/7 through RAINN's secure chat platform.</p>
+    <a href="https://hotline.rainn.org/online" target="_blank">Start Chat at rainn.org →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-online">💻 Online</span>
+    <h3>Crisis Text Line</h3>
+    <p>Text HOME to 741741 to connect with a trained crisis counselor. Free, confidential, available 24/7.</p>
+    <a href="sms:741741">Text HOME to 741741 →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-online">💻 Online</span>
+    <h3>NCMEC CyberTipline</h3>
+    <p>Report online sexual exploitation of children. The National Center for Missing & Exploited Children provides help and resources for survivors of online abuse.</p>
+    <a href="https://www.missingkids.org" target="_blank">missingkids.org →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-legal">⚖️ Legal Help</span>
+    <h3>Know Your Rights</h3>
+    <p>Survivors have the right to report abuse, access medical care, and pursue justice. Local victim advocates can help navigate the legal process for free.</p>
+    <a href="https://www.rainn.org/articles/legal-role-consent" target="_blank">Learn More at RAINN →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-local">🏠 Local</span>
+    <h3>Find Local Support</h3>
+    <p>RAINN's database connects you with the nearest sexual assault service provider offering in-person counseling, medical support, and advocacy.</p>
+    <a href="https://www.rainn.org/get-help" target="_blank">Find Services Near You →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-online">💻 Online</span>
+    <h3>After Silence</h3>
+    <p>A message board and chat community for survivors of rape and sexual abuse — a safe place to share, heal, and connect with others who understand.</p>
+    <a href="https://www.aftersilence.org" target="_blank">aftersilence.org →</a>
+  </div>
+
+  <div class="resource-card">
+    <span class="resource-type type-local">🏠 For Parents</span>
+    <h3>Darkness to Light</h3>
+    <p>Education programs and resources to help parents and caregivers talk with children about body safety and prevent abuse before it happens.</p>
+    <a href="https://www.d2l.org" target="_blank">d2l.org →</a>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+
+<!-- TAKE ACTION -->
+
+<section id="act">
+  <div class="section-inner">
+    <span class="section-tag" style="color: var(--gold-light);">Make a Difference</span>
+    <h2>How You Can Help</h2>
+    <p class="section-lead">Everyone has a role to play in creating a world where every girl is safe. Here's how you can take action.</p>
+    <div class="act-grid">
+      <div class="act-card">
+        <div class="act-icon">🗣️</div>
+        <h3>Speak Up</h3>
+        <p>If you suspect abuse, report it. You don't need proof — contact local child protective services or law enforcement. Silence protects abusers, not children.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">📚</div>
+        <h3>Educate Children</h3>
+        <p>Teach children about body autonomy, consent, and that no adult should ever ask them to keep secrets. Age-appropriate education is powerful prevention.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">💛</div>
+        <h3>Support Survivors</h3>
+        <p>Believe survivors when they share their stories. Listen without judgment. Offer connection to resources, not advice about what they "should" do.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">📢</div>
+        <h3>Spread Awareness</h3>
+        <p>Share this page, post on social media, and start conversations. Breaking the stigma and silence around sexual abuse begins with one voice at a time.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🤝</div>
+        <h3>Volunteer & Donate</h3>
+        <p>Support organizations like RAINN, Childhelp, and local crisis centers with your time or resources. They depend on community support to keep services free.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🌱</div>
+        <h3>Create Safe Spaces</h3>
+        <p>Whether at school, in your community, or at home — create environments where children feel safe to speak up, are believed, and are protected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">Girls Out Gold</div>
+  <p>This page is a place of hope, healing, and action. If you or someone you know is in danger, please reach out for help right now.</p>
+  <a href="tel:18006564673" class="footer-crisis">Call RAINN: 1-800-656-4673</a>
+  <div class="footer-bottom">
+    © 2025 Girls Out Gold Initiative · Built with care for every girl who deserves to be safe, seen, and free.
+  </div>
+</footer>
+
+<script>
+  // Tab filter (simple demo)
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.awareness-card, .resource-card, .act-card, .signs-list li').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
